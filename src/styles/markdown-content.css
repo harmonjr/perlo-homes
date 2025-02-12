@@ -10,7 +10,7 @@
 	:not(pre *, .admonition *, details *, blockquote *, span, a, h1, h2, h3, h4, h5, h6):not(
 		:where(.not-content *)
 	) {
-	@apply text-foreground/80;
+	@apply text-foreground/85;
 }
 
 /* paragraph spacing except for paragraphs inside list items */
@@ -30,22 +30,22 @@
 }
 
 .markdown-content h1:not(:where(.not-content *)) {
-	@apply text-3xl font-semibold md:text-4xl;
+	@apply text-3xl font-medium md:text-4xl;
 }
 .markdown-content h2:not(:where(.not-content *)) {
-	@apply text-2xl font-semibold md:text-3xl;
+	@apply text-2xl font-medium md:text-3xl;
 }
 .markdown-content h3:not(:where(.not-content *)) {
-	@apply text-xl font-semibold md:text-2xl;
+	@apply text-xl font-medium md:text-2xl;
 }
 .markdown-content h4:not(:where(.not-content *)) {
-	@apply text-lg font-semibold md:text-xl;
+	@apply text-lg font-medium md:text-xl;
 }
 .markdown-content h5:not(:where(.not-content *)) {
-	@apply text-foreground/80 font-semibold md:text-lg;
+	@apply text-foreground/85 font-medium md:text-lg;
 }
 .markdown-content h6:not(:where(.not-content *)) {
-	@apply text-foreground/80 font-semibold md:text-lg;
+	@apply text-foreground/85 font-medium md:text-lg;
 }
 
 /* anchor tags */
@@ -55,7 +55,7 @@
 
 /* code */
 .markdown-content code:not(:where(.not-content *)) {
-	@apply bg-base-100 dark:bg-base-800 border-base-100 dark:border-base-800 rounded-md border-2 border-solid px-[.1rem] py-0 font-mono;
+	@apply bg-base-200 dark:bg-base-800 border-base-300 dark:border-base-800 rounded-md border-2 border-solid px-[.1rem] py-0 font-mono;
 }
 .markdown-content :is(h1, h2, h3, h4, h5, h6) code {
 	@apply text-inherit;
@@ -87,7 +87,11 @@
 
 /* blockquotes */
 .markdown-content blockquote:not(:where(.not-content *)) {
-	@apply border-primary-500 border-l-4 pl-4 font-medium italic;
+	@apply border-primary-600 border-l-4 pl-4 font-medium italic;
+
+	p {
+		@apply text-foreground;
+	}
 }
 
 /* images, videos, etc */
@@ -159,7 +163,7 @@
 	padding-inline-end: 0;
 }
 .markdown-content th:not(:where(.not-content *)) {
-	@apply text-foreground font-semibold;
+	@apply text-foreground font-medium;
 }
 /* Align headings to the start of the line unless set by the `align` attribute. */
 .markdown-content th:not([align]):not(:where(.not-content *)) {
