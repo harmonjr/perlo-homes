@@ -3,8 +3,13 @@
   "title": "code intro",
   "steps": [
     {
+      "file": "package.json",
+      "description": "When first getting started, first make sure the site builds as-is. Run `npm install` then `npm run build` (or `pnpm install` and `pnpm build`). \n\nNext run `npm run config-i18n` and follow the instructions to get setup! This will configure your site for one language or multiple languages. For further information, see the [i18n documentation](https://cosmicthemes.com/docs/i18n/).",
+      "line": 11
+    },
+    {
       "file": "src/config/siteSettings.json.ts",
-      "description": "The first place you want to start is this siteSettings file. Here is where you start configuring if you want to use multiple languages, or one language only. I highly recommend going to the docs page I have on this for full details at https://cosmicthemes.com/docs/i18n/",
+      "description": "Next you'll want to head to your siteSettings and configure some general site settings.",
       "line": 4
     },
     {
@@ -18,13 +23,13 @@
       "line": 29
     },
     {
-      "file": "tailwind.config.cjs",
+      "file": "src/styles/tailwind-theme.css",
       "description": "Here you can edit the colors your website is using. You can use any of Tailwind's default colors, or create your own.",
-      "line": 34
+      "line": 6
     },
     {
       "file": "src/content.config.ts",
-      "description": "In the \"data\" folder you will find blog posts, author info, and other pages. These all work with markdown or mdx files. You can see examples of what to put. Using the schema defined in this \"config.ts\" file, when you try to \"npm run dev\" this site, it will validate the item against this schema and give you a detailed error if you forgot something required.",
+      "description": "In the \"content\" folder you will find blog posts, author info, and other pages. These all work with markdown or mdx files. You can see examples of what to put. Using the schema defined in this \"config.ts\" file, when you try to \"npm run dev\" this site, it will validate the item against this schema and give you a detailed error if you forgot something required.",
       "line": 4
     },
     {

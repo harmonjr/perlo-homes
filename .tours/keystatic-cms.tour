@@ -19,13 +19,8 @@
     },
     {
       "file": "astro.config.mjs",
-      "description": "If you don't want to use Keystatic, you can just use normal MDX for the blog posts and authors. You will want to run the command `npm run remove-keystatic` to remove the Keystatic files.",
+      "description": "If you don't want to use Keystatic, you can just use normal MDX for the content collection items. Run the command `npm run remove-keystatic` to remove Keystatic items from the project.",
       "line": 17
-    },
-    {
-      "file": "astro.config.mjs",
-      "description": "If you don't want to use keystatic, you will also want to remove the keystatic integration.",
-      "line": 47
     }
   ]
 }
