@@ -30,7 +30,7 @@ const { image, title, items, href, idx, imageSide, ...rest } = Astro.props as Pr
 			{
 				items.map((item) => (
 					<li class="mt-4 flex items-center opacity-80">
-						<Icon name="tabler/check" class="mr-2 h-5 w-5 text-primary-500" aria-hidden="true" />
+						<Icon name="tabler/check" class="text-primary-500 mr-2 h-5 w-5" aria-hidden="true" />
 						<span>{item}</span>
 					</li>
 				))
@@ -44,10 +44,10 @@ const { image, title, items, href, idx, imageSide, ...rest } = Astro.props as Pr
 	<!-- image -->
 	<div class="relative mx-auto max-w-4xl">
 		<!-- background blob -->
-		<div class="absolute left-0 top-0 -z-10 h-full w-full">
+		<div class="absolute top-0 left-0 -z-10 h-full w-full">
 			<Icon
 				name={`stellar/blob-${idx % 4}`}
-				class="absolute left-0 top-0 h-auto w-[220%] -translate-x-1/4 -translate-y-[21%] text-primary-100 md:-translate-x-1/3"
+				class="text-primary-100 absolute top-0 left-0 h-auto w-[220%] -translate-x-1/4 -translate-y-[21%] md:-translate-x-1/3"
 				aria-hidden="true"
 			/>
 		</div>

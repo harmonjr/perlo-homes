@@ -1,9 +1,9 @@
 {
-  "tailwind": {
-    "css": "src/styles/starwind.css",
-    "baseColor": "neutral",
-    "cssVariables": true
-  },
-  "componentDir": "src/components",
-  "components": []
+	"tailwind": {
+		"css": "src/styles/starwind.css",
+		"baseColor": "neutral",
+		"cssVariables": true
+	},
+	"componentDir": "src/components",
+	"components": []
 }

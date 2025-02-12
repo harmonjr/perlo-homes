@@ -22,7 +22,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
 ---
 
-<section id="hero" class="md:pb-22 relative mb-14 flex min-h-[60svh] w-full">
+<section id="hero" class="relative mb-14 flex min-h-[60svh] w-full md:pb-22">
 	<!-- background image -->
 	<div class="absolute -z-20 h-full w-full overflow-hidden bg-white opacity-60">
 		<Image
@@ -50,11 +50,11 @@ const t = useTranslations(currLocale);
 	</div>
 
 	<!-- hero items -->
-	<div class="site-container w-full gap-10 pb-24 pt-36 md:pb-36 md:pt-44">
+	<div class="site-container w-full gap-10 pt-36 pb-24 md:pt-44 md:pb-36">
 		<!-- Hero text -->
 		<div class="mr-auto max-w-[450px]">
 			<h1
-				class="text-4xl font-medium leading-tight sm:text-5xl md:leading-tight"
+				class="text-4xl leading-tight font-medium sm:text-5xl md:leading-tight"
 				data-aos="fade-up"
 			>
 				Quality work you deserve from the people you
@@ -63,7 +63,7 @@ const t = useTranslations(currLocale);
 					<span>
 						<Icon
 							name="stellar/freehand-zig-underline"
-							class="absolute left-0 top-0 -z-10 h-full w-full translate-y-1/2 text-primary-400"
+							class="text-primary-400 absolute top-0 left-0 -z-10 h-full w-full translate-y-1/2"
 							aria-hidden="true"
 						/>
 					</span>

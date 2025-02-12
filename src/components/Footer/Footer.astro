@@ -18,7 +18,7 @@ const siteData = getTranslatedData("siteData", currLocale);
 const today = new Date();
 ---
 
-<footer class="site-container mb-16 mt-20 border-t border-t-base-300">
+<footer class="site-container border-t-base-300 mt-20 mb-16 border-t">
 	<div class="grid w-full justify-between gap-4 md:grid-cols-2">
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="mt-6 flex flex-col items-start gap-4">
@@ -34,16 +34,16 @@ const today = new Date();
 
 			<!-- Contact info -->
 			<div class="flex flex-col">
-				<h3 class="mb-2 mt-6 text-lg font-medium">Location & Contact</h3>
+				<h3 class="mt-6 mb-2 text-lg font-medium">Location & Contact</h3>
 				<p>{siteData.contact.address1}</p>
 				<p>{siteData.contact.address2}</p>
 				<p>
 					Ph: <a
 						href={`tel:${siteData.contact.phone}`}
-						class="transition hover:text-primary-500 hover:underline">{siteData.contact.phone}</a
+						class="hover:text-primary-500 transition hover:underline">{siteData.contact.phone}</a
 					>
 				</p>
-				<a href="mailto:example@email.com" class="transition hover:text-primary-500 hover:underline"
+				<a href="mailto:example@email.com" class="hover:text-primary-500 transition hover:underline"
 					>{siteData.contact.email}</a
 				>
 			</div>

@@ -28,16 +28,16 @@ const siteData = getTranslatedData("siteData", currLocale);
 				<div class="h2 opacity-0">-</div>
 
 				<!-- contact info pulled from siteData.json -->
-				<h3 class="mb-2 mt-4 text-lg font-medium">Location & Contact</h3>
+				<h3 class="mt-4 mb-2 text-lg font-medium">Location & Contact</h3>
 				<p>{siteData.contact.address1}</p>
 				<p>{siteData.contact.address2}</p>
 				<p>
 					Ph: <a
 						href={`tel:${siteData.contact.phone}`}
-						class="transition hover:text-primary-500 hover:underline">{siteData.contact.phone}</a
+						class="hover:text-primary-500 transition hover:underline">{siteData.contact.phone}</a
 					>
 				</p>
-				<a href="mailto:example@email.com" class="transition hover:text-primary-500 hover:underline"
+				<a href="mailto:example@email.com" class="hover:text-primary-500 transition hover:underline"
 					>{siteData.contact.email}</a
 				>
 			</div>

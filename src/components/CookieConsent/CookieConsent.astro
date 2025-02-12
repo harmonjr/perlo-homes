@@ -22,13 +22,13 @@ const currLocale = getLocaleFromUrl(Astro.url);
 <!-- Dialog API would be nice to use here. But Safari doesn't support it yet. https://caniuse.com/?search=dialog -->
 <div id="cookie-banner" class="fixed inset-x-6 bottom-6 z-50 hidden justify-center">
 	<div
-		class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-md border border-primary-300 bg-base-50 p-4"
+		class="border-primary-300 bg-base-50 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-md border p-4"
 	>
 		<div class="text-center">
 			<p class="text-sm lg:text-base">
 				We use cookies to improve your experience on this site. To learn more, see our <a
 					href={getRelativeLocaleUrl(currLocale, "/privacy-policy")}
-					class="underline decoration-primary-500 transition hover:text-primary-500"
+					class="decoration-primary-500 hover:text-primary-500 underline transition"
 					>Privacy Policy</a
 				>.
 			</p>

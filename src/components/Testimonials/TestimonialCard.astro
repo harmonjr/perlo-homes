@@ -10,14 +10,14 @@ const { avatar, name, title, testimonial } = Astro.props as TestimonialItem;
 
 <div class="flex h-full">
 	<div
-		class="flex flex-col items-center justify-between rounded-xl bg-base-50 px-4 pb-8 text-center"
+		class="bg-base-50 flex flex-col items-center justify-between rounded-xl px-4 pb-8 text-center"
 	>
 		<div class="flex flex-col items-center">
 			<Image
 				src={avatar}
 				alt={name}
 				height={160}
-				class="-mt-10 h-20 w-20 rounded-full border-2 border-primary-500 object-cover"
+				class="border-primary-500 -mt-10 h-20 w-20 rounded-full border-2 object-cover"
 			/>
 			<p class="mt-4 text-lg">{name}</p>
 			<p class="opacity-80">{title}</p>

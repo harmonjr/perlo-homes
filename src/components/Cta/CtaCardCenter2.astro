@@ -16,18 +16,18 @@ const currLocale = getLocaleFromUrl(Astro.url);
 
 <section id="cta" class="my-24 py-8 md:my-36">
 	<div class="site-container">
-		<div class="relative h-full w-full overflow-hidden rounded-xl bg-primary-100">
+		<div class="bg-primary-100 relative h-full w-full overflow-hidden rounded-xl">
 			<!-- bottom left blob -->
 			<Icon
 				name="stellar/blob-1"
-				class="absolute bottom-0 left-0 aspect-square h-[100%] -translate-x-[20%] translate-y-[40%] rotate-12 text-primary-400/50 md:h-[150%]"
+				class="text-primary-400/50 absolute bottom-0 left-0 aspect-square h-[100%] -translate-x-[20%] translate-y-[40%] rotate-12 md:h-[150%]"
 				aria-hidden="true"
 			/>
 
 			<!-- top right blob -->
 			<Icon
 				name="stellar/blob-3"
-				class="absolute right-0 top-0 aspect-square h-[100%] -translate-y-[30%] translate-x-[20%] text-primary-400/50 md:h-[150%]"
+				class="text-primary-400/50 absolute top-0 right-0 aspect-square h-[100%] -translate-y-[30%] translate-x-[20%] md:h-[150%]"
 				aria-hidden="true"
 			/>
 
@@ -41,7 +41,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 								<span>
 									<Icon
 										name="stellar/freehand-zig-underline"
-										class="absolute left-0 top-0 -z-10 h-full w-full translate-y-1/2 text-primary-400"
+										class="text-primary-400 absolute top-0 left-0 -z-10 h-full w-full translate-y-1/2"
 										aria-hidden="true"
 									/>
 								</span>
