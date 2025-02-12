@@ -1,7 +1,6 @@
 ---
 // components
 import NavLink from "@components/Nav/NavLink.astro";
-import NavDropdown from "@components/Nav/NavDropdown/NavDropdown.astro";
 import NavDropdownToggle from "@components/Nav/NavDropdown/NavDropdownToggle.astro";
 import MegaMenuDropdownToggle from "@components/Nav/NavDropdown/MegaMenuDropdownToggle.astro";
 import MobileNav from "@components/Nav/MobileNav/MobileNav.astro";
@@ -22,7 +21,7 @@ import { locales } from "@config/siteSettings.json";
 
 <div
 	id="nav__container"
-	class="fixed left-0 top-0 z-30 flex w-full flex-col border-b border-b-transparent bg-transparent py-3 transition-all duration-500"
+	class="navbar--initial fixed top-0 left-0 z-30 flex w-full flex-col border-b transition-all duration-500"
 	transition:name={`nav`}
 >
 	<div class="mx-auto flex w-full">
@@ -61,13 +60,13 @@ import { locales } from "@config/siteSettings.json";
 				<div class="flex flex-auto justify-end">
 					<Button
 						variant="primary"
-						class="my-auto hidden md:block"
+						class="my-auto hidden h-10 items-center justify-center md:flex"
 						href="https://cosmicthemes.com/themes/stellar/"
 					>
 						Get Stellar!
 					</Button>
 
-					{locales.length > 1 && <LanguageSelect class="ml-2 hidden md:block" />}
+					{locales.length > 1 && <LanguageSelect class="ml-2 hidden md:flex" />}
 
 					<!-- mobile nav menu, only load on small screens where it is visible -->
 					<div class="md:hidden">
@@ -79,24 +78,31 @@ import { locales } from "@config/siteSettings.json";
 	</div>
 </div>
 
+<style>
+	@import "tailwindcss/theme" theme(reference);
+	@import "@/styles/tailwind-theme.css" theme(reference);
+
+	.navbar--scrolled {
+		@apply bg-background border-b;
+	}
+
+	.navbar--initial {
+		@apply border-b-transparent bg-transparent py-3;
+	}
+</style>
+
 <script>
 	let navbar: HTMLElement | null;
 
 	function scrollHandler() {
 		if (navbar) {
 			if (window.scrollY > 50) {
-				// if we have scrolled down the page a bit, change navbar
-				navbar.classList.add("bg-base-50");
-				navbar.classList.remove("bg-transparent");
-				navbar.classList.add("border-b-base-200");
-				navbar.classList.remove("border-b-transparent");
-				navbar.classList.remove("py-3");
+				// if we have scrolled down the page a bit, add a frosted-glass look to the navbar
+				navbar.classList.add("navbar--scrolled");
+				navbar.classList.remove("navbar--initial");
 			} else {
-				navbar.classList.add("py-3");
-				navbar.classList.remove("bg-base-50");
-				navbar.classList.add("bg-transparent");
-				navbar.classList.remove("border-b-base-200");
-				navbar.classList.add("border-b-transparent");
+				navbar.classList.add("navbar--initial");
+				navbar.classList.remove("navbar--scrolled");
 			}
 		}
 	}

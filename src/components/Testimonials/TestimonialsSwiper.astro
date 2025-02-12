@@ -8,7 +8,7 @@ import { Icon } from "astro-icon/components";
 // swiper style imports
 import "swiper/css";
 import "swiper/css/pagination";
-import "./testimonialSwiper.scss"; // have to define custom styles like this
+import "./testimonialSwiper.css"; // have to define custom styles like this
 
 // components
 import TestimonialCard from "./TestimonialCard.astro";
@@ -30,7 +30,7 @@ const testimonialData = getTranslatedData("testimonialData", currLocale);
 				<span>
 					<Icon
 						name="stellar/freehand-heart"
-						class="h-8 w-auto text-primary-500"
+						class="text-primary-500 h-8 w-auto"
 						aria-hidden="true"
 					/>
 				</span>
@@ -54,13 +54,6 @@ const testimonialData = getTranslatedData("testimonialData", currLocale);
 				</div>
 				<!-- If we need pagination -->
 				<div class="swiper-pagination"></div>
-
-				<!-- If we need navigation buttons -->
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-
-				<!-- If we need scrollbar -->
-				<div class="swiper-scrollbar"></div>
 			</div>
 		</div>
 	</div>
@@ -84,8 +77,6 @@ const testimonialData = getTranslatedData("testimonialData", currLocale);
 			initialSlide: 1,
 			grabCursor: true,
 			centeredSlides: true,
-			// loop: true,
-			// speed: 500,
 
 			breakpoints: {
 				// when window width is >= 768px
@@ -105,17 +96,6 @@ const testimonialData = getTranslatedData("testimonialData", currLocale);
 				el: ".swiper-pagination",
 				clickable: true,
 			},
-
-			// Navigation arrows
-			// navigation: {
-			//   nextEl: ".swiper-button-next",
-			//   prevEl: ".swiper-button-prev",
-			// },
-
-			// And if we need scrollbar
-			// scrollbar: {
-			//   el: '.swiper-scrollbar',
-			// },
 		};
 
 		// Now you can use Swiper

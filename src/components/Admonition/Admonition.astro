@@ -24,28 +24,54 @@ const icon = (() => {
 
 <div
 	class:list={[
-		"admonition my-3 rounded-lg border-l-4 px-4 py-3 dark:text-base-900",
+		"admonition text-base-800 dark:text-base-200 my-3 rounded-lg border-l-4 px-4 py-3",
 		{
-			"border-success bg-success/10 text-success-content prose-code:bg-success/20 dark:prose-code:bg-success/20":
+			"border-success/50 text-success-foreground bg-success/10 admonition-success":
 				variant === "tip",
 		},
 		{
-			"border-warning bg-warning/10 text-warning-content prose-code:bg-warning/20 dark:prose-code:bg-warning/20":
-				variant === "caution",
+			"border-warning/50 text-foreground bg-warning/10 admonition-warning": variant === "caution",
 		},
 		{
-			"border-error bg-error/10 text-error-content prose-code:bg-error/20 dark:prose-code:bg-error/20":
-				variant === "danger",
+			"border-error/50 text-foreground bg-error/10 admonition-error": variant === "danger",
 		},
 		{
-			"border-info bg-info/10 text-info-content prose-code:bg-info/20 dark:prose-code:bg-info/20":
-				variant === "info",
+			"border-info/50 text-info-foreground bg-info/10 admonition-info": variant === "info",
 		},
 	]}
 >
-	<div class="flex items-center gap-2 pb-2">
-		<Icon name={icon} class="h-7 w-7" aria-hidden="true" />
-		<p class="text-sm font-bold">{variant.toUpperCase()}</p>
+	<div class="not-content text-base-700 flex items-center gap-2 pb-2">
+		<Icon name={icon} class="dark:text-base-300 size-7" aria-hidden="true" />
+		<p class="dark:text-base-300 text-sm font-bold">
+			{variant.toUpperCase()}
+		</p>
 	</div>
 	<slot />
 </div>
+
+<style is:global>
+	@import "tailwindcss/theme" theme(reference);
+	@import "@/styles/tailwind-theme.css" theme(reference);
+
+	.admonition > :first-child {
+		@apply mt-0;
+	}
+	.admonition > :nth-child(2) {
+		@apply mt-0;
+	}
+	.admonition > :last-child {
+		@apply mb-0;
+	}
+	.admonition-success code {
+		@apply bg-success/20 border-none px-0.5;
+	}
+	.admonition-info code {
+		@apply bg-info/20 border-none px-0.5;
+	}
+	.admonition-warning code {
+		@apply bg-warning/20 border-none px-0.5;
+	}
+	.admonition-error code {
+		@apply bg-error/20 border-none px-0.5;
+	}
+</style>

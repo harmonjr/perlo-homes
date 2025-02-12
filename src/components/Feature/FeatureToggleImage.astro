@@ -48,7 +48,7 @@ const featureData: ToggleSection[] = [
 					See the results
 					<Icon
 						name="stellar/freehand-arrow"
-						class="absolute right-0 top-0 h-auto w-10 translate-x-10 translate-y-7 rotate-45 text-primary-500"
+						class="text-primary-500 absolute top-0 right-0 h-auto w-10 translate-x-10 translate-y-7 rotate-45"
 						aria-hidden="true"
 					/>
 				</h2>
@@ -59,7 +59,7 @@ const featureData: ToggleSection[] = [
 								id={`toggle-feature__toggle-${idx}`}
 								class={`${
 									idx === 0 ? "toggle-feature__toggle--active" : ""
-								} flex items-start justify-start gap-2 rounded-lg border border-base-300 p-2 transition duration-300 hover:border-primary-300 hover:opacity-100`}
+								} border-base-300 hover:border-primary-300 flex items-start justify-start gap-2 rounded-lg border p-2 transition duration-300 hover:opacity-100`}
 							>
 								<Icon name={section.icon} class="mt-1 h-5 w-5" aria-hidden="true" />
 								<p class="text-start text-lg">{section.title}</p>
@@ -90,8 +90,11 @@ const featureData: ToggleSection[] = [
 </section>
 
 <style>
+	@import "tailwindcss/theme" theme(reference);
+	@import "@/styles/tailwind-theme.css" theme(reference);
+
 	.toggle-feature__toggle--active {
-		@apply border-primary-300 ring-1 ring-primary-500;
+		@apply border-primary-300 ring-primary-500 ring-1;
 	}
 </style>
 

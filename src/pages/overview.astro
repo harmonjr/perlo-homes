@@ -11,6 +11,10 @@ import Button from "@components/Button/Button.astro";
 import { getLocaleFromUrl } from "@js/localeUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
+
+// styles
+const overview__heading = "mb-4 mt-6 text-xl font-medium";
+const overview__link = "my-[.15rem] leading-snug transition hover:text-primary-600";
 ---
 
 <BaseLayout title="Recent Blog Posts" description="Recent Blog Posts Description">
@@ -18,80 +22,83 @@ const currLocale = getLocaleFromUrl(Astro.url);
 		<div class="mx-auto max-w-4xl">
 			<h1 class="h1">Overview</h1>
 			<p class="description mt-2">The various pages of Stellar</p>
-			<div class="mx-auto mt-10 grid gap-4 xs:grid-cols-2 md:grid-cols-3">
+			<div class="xs:grid-cols-2 mx-auto mt-10 grid gap-4 md:grid-cols-3">
 				<!-- Landing pages -->
 				<div class="flex flex-col">
-					<h3 class="overview-heading">Landing Pages</h3>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/")}>Landing 1</a>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/examples/landing2")}
+					<h3 class={overview__heading}>Landing Pages</h3>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/")}>Landing 1</a>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/examples/landing2")}
 						>Landing 2</a
 					>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/examples/landing3")}
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/examples/landing3")}
 						>Landing 3</a
 					>
 				</div>
 
 				<!-- Blog pages -->
 				<div class="flex flex-col">
-					<h3 class="overview-heading">Blog</h3>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/blog")}>Blog Index 1</a>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/examples/blogIndex2")}
+					<h3 class={overview__heading}>Blog</h3>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/blog")}>Blog Index 1</a
+					>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/examples/blogIndex2")}
 						>Blog Index 2</a
 					>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/categories")}
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/categories")}
 						>Categories</a
 					>
 					<a
-						class="overview-link"
+						class={overview__link}
 						href={getRelativeLocaleUrl(currLocale, "/blog/tsconfig-paths-setup")}>Blog Post</a
 					>
 				</div>
 
 				<!-- Sections -->
 				<div class="flex flex-col">
-					<h3 class="overview-heading">Sections</h3>
+					<h3 class={overview__heading}>Sections</h3>
 					<a
-						class="overview-link"
+						class={overview__link}
 						href={getRelativeLocaleUrl(currLocale, "/examples/feature-services")}
 						>All Feature and Services Sections</a
 					>
 					<a
-						class="overview-link"
+						class={overview__link}
 						href={getRelativeLocaleUrl(currLocale, "/examples/testimonial-faq")}
 						>All Testimonial and FAQ Sections</a
 					>
 					<a
-						class="overview-link"
+						class={overview__link}
 						href={getRelativeLocaleUrl(currLocale, "/examples/hero-sections")}>All Hero Sections</a
 					>
 				</div>
 
 				<!-- Site Elements -->
 				<div class="flex flex-col">
-					<h3 class="overview-heading">Elements and Forms</h3>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/elements")}>MDX Pages</a
+					<h3 class={overview__heading}>Elements and Forms</h3>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/elements")}
+						>MDX Pages</a
 					>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/contact")}>Contact</a>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/contact")}>Contact</a>
 				</div>
 
 				<!-- Widgets -->
 				<div class="flex flex-col">
-					<h3 class="overview-heading">Widgets</h3>
+					<h3 class={overview__heading}>Widgets</h3>
 					<!-- CookieConsent component should be used in BaseLayout.astro if desired -->
 					<button id="test-consent-demo-btn" class="overview-link text-left">Cookie Consent</button>
 				</div>
 
 				<!-- Other -->
 				<div class="flex flex-col">
-					<h3 class="overview-heading">Other Pages</h3>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/about")}>About</a>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/privacy-policy")}
+					<h3 class={overview__heading}>Other Pages</h3>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/about")}>About</a>
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/privacy-policy")}
 						>Privacy Policy</a
 					>
-					<a class="overview-link" href={getRelativeLocaleUrl(currLocale, "/terms")}>Terms of Use</a
+					<a class={overview__link} href={getRelativeLocaleUrl(currLocale, "/terms")}
+						>Terms of Use</a
 					>
-					<a class="overview-link" href="/not-a-link/">404</a>
-					<a class="overview-link" href="/rss.xml" target="_blank" rel="noopener noreferrer"
+					<a class={overview__link} href="/not-a-link/">404</a>
+					<a class={overview__link} href="/rss.xml" target="_blank" rel="noopener noreferrer"
 						>RSS Feed</a
 					>
 				</div>
@@ -101,13 +108,13 @@ const currLocale = getLocaleFromUrl(Astro.url);
 		<!-- CookieConsent component should be used in BaseLayout.astro if desired -->
 		<div id="test-banner" class="fixed inset-x-6 bottom-6 z-50 hidden justify-center">
 			<div
-				class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-md border border-primary-300 bg-base-50 p-4"
+				class="border-primary-300 bg-base-50 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-md border p-4"
 			>
 				<div class="text-center">
 					<p class="text-sm lg:text-base">
 						We use cookies to improve your experience on this site. To learn more, see our <a
 							href={getRelativeLocaleUrl(currLocale, "/privacy-policy")}
-							class="underline decoration-primary-500 transition hover:text-primary-500"
+							class="decoration-primary-500 hover:text-primary-500 underline transition"
 							>Privacy Policy</a
 						>.
 					</p>
@@ -120,16 +127,6 @@ const currLocale = getLocaleFromUrl(Astro.url);
 		</div>
 	</section>
 </BaseLayout>
-
-<style lang="scss">
-	.overview-heading {
-		@apply mb-4 mt-6 text-xl font-medium;
-	}
-	.overview-link {
-		// @apply text-primary-600 hover:text-primary-700 hover:underline;
-		@apply my-[.15rem] leading-snug transition hover:text-primary-600;
-	}
-</style>
 
 <script>
 	//Script purely for demo of the CookieConsent component. Use the actual <CookieConsent /> component in BaseLayout.astro if desired.

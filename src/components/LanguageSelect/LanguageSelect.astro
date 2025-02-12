@@ -23,7 +23,7 @@ const { class: className, ...rest } = Astro.props as Props;
 const currLocale = getLocaleFromUrl(Astro.url);
 ---
 
-<div
+<li
 	class:list={[
 		"lang-select__dropdown description group relative my-auto flex items-center text-sm",
 		className,
@@ -31,7 +31,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 	{...rest}
 >
 	<button
-		class="primary-focus lang-select__dropdown-button flex items-center gap-0.5 whitespace-nowrap py-1 font-medium leading-tight transition hover:text-primary-500 md:flex"
+		class="primary-focus lang-select__dropdown-button nav__link--base flex h-10 items-center gap-0.5 py-1 whitespace-nowrap"
 		type="button"
 		aria-expanded="false"
 		aria-haspopup="true"
@@ -53,18 +53,24 @@ const currLocale = getLocaleFromUrl(Astro.url);
 	<div
 		id="lang-select__dropdown-content"
 		aria-labelledby="lang-select"
-		class="lang-select__dropdown-content invisible absolute top-full z-10 mt-2 w-full opacity-0 transition-all"
+		data-state="closed"
+		class:list={[
+			"lang-select__dropdown-content absolute top-full right-0 z-10 w-full opacity-100 transition-all duration-200",
+			"slide-in-from-top-2 fade-in-0 animate-in hidden will-change-transform",
+			"data-[state=closed]:fade-out-0 data-[state=closed]:animate-out data-[state=closed]:duration-200",
+		]}
 	>
 		<ul
-			class="mx-auto mt-4 w-fit max-w-xs whitespace-nowrap rounded-md border border-solid border-primary-400/50 bg-base-100 px-3 py-1.5 drop-shadow-md"
+			class="border-primary-400/50 bg-base-100 mx-auto mt-4.5 w-fit max-w-xs rounded-md border border-solid px-3 py-1.5 whitespace-nowrap drop-shadow-md"
 		>
 			{
 				locales.map((lang) => (
 					<li class="flex w-full justify-center">
 						<a
-							class="primary-focus relative block w-full whitespace-nowrap py-1 font-medium leading-tight transition hover:text-primary-500"
+							class="primary-focus nav__link--base relative block w-full py-1 whitespace-nowrap"
 							href={getLocalizedPathname(lang, Astro.url)}
 							aria-label={`Change language to ${lang.toUpperCase()}`}
+							data-astro-reload
 						>
 							{languageSwitcherMap[lang]}
 						</a>
@@ -73,69 +79,80 @@ const currLocale = getLocaleFromUrl(Astro.url);
 			}
 		</ul>
 	</div>
-</div>
+</li>
 
 <script>
-	function dropdownToggleSetup() {
-		const langSelects = document.querySelectorAll(".lang-select__dropdown");
-		langSelects.forEach((langSelect) => {
-			const dropdownButton = langSelect.querySelector(".lang-select__dropdown-button");
-			const dropdownChevron = langSelect.querySelector(".lang-select__dropdown-chevron");
-			const dropdownContent = langSelect.querySelector(".lang-select__dropdown-content");
-			if (dropdownButton && dropdownContent && dropdownChevron) {
-				dropdownButton.addEventListener("click", (event) => {
-					if (!langSelect.classList.contains("active")) {
-						// if dropdown is currently closed, so open it
-						langSelect.classList.add("active");
-						dropdownButton.setAttribute("aria-expanded", "true");
-						dropdownContent.classList.add("dropdown--fade-in");
-						dropdownChevron.classList.add("rotate-180");
-					} else {
-						// dropdown is currently open, so close it
-						langSelect.classList.remove("active");
-						dropdownButton.setAttribute("aria-expanded", "false");
-						dropdownContent.classList.remove("dropdown--fade-in");
-						dropdownChevron.classList.remove("rotate-180");
-					}
-					event.preventDefault();
-					return false;
-				});
+	class LangSelectController {
+		private langSelect: HTMLDivElement;
+		private dropdownButton: HTMLButtonElement | null;
+		private dropdownChevron: HTMLElement | null;
+		private dropdownContent: HTMLDivElement | null;
+		private animationDuration: number = 200;
 
-				// if dropdown menu is open there is a click outside, close the menu
-				document.addEventListener("click", (event) => {
-					if (
-						!langSelect?.contains(event.target as Node) &&
-						langSelect?.classList.contains("active")
-					) {
-						langSelect.classList.remove("active");
-						dropdownButton.setAttribute("aria-expanded", "false");
-						dropdownContent.classList.remove("dropdown--fade-in");
-						dropdownChevron.classList.remove("rotate-180");
-					}
-				});
+		constructor(langSelect: HTMLDivElement) {
+			this.langSelect = langSelect;
+			this.dropdownButton = langSelect.querySelector(".lang-select__dropdown-button");
+			this.dropdownChevron = langSelect.querySelector(".lang-select__dropdown-chevron");
+			this.dropdownContent = langSelect.querySelector(".lang-select__dropdown-content");
+
+			if (!this.dropdownButton || !this.dropdownContent || !this.dropdownChevron) {
+				return;
 			}
-		});
+
+			this.init();
+		}
+
+		private init() {
+			this.dropdownButton?.addEventListener("click", this.handleDropdownClick.bind(this));
+			document.addEventListener("click", this.handleOutsideClick.bind(this));
+		}
+
+		private handleDropdownClick(event: MouseEvent) {
+			if (!this.langSelect.classList.contains("active")) {
+				this.openDropdown();
+			} else {
+				this.closeDropdown();
+			}
+			event.preventDefault();
+			return false;
+		}
+
+		private handleOutsideClick(event: MouseEvent) {
+			if (
+				!this.langSelect?.contains(event.target as Node) &&
+				this.langSelect?.classList.contains("active")
+			) {
+				this.closeDropdown();
+			}
+		}
+
+		private openDropdown() {
+			this.langSelect.classList.add("active");
+			this.dropdownButton?.setAttribute("aria-expanded", "true");
+			this.dropdownContent?.setAttribute("data-state", "open");
+			this.dropdownContent?.classList.remove("hidden");
+			this.dropdownChevron?.classList.add("rotate-180");
+		}
+
+		private closeDropdown() {
+			this.langSelect.classList.remove("active");
+			this.dropdownButton?.setAttribute("aria-expanded", "false");
+			this.dropdownContent?.setAttribute("data-state", "closed");
+			this.dropdownChevron?.classList.remove("rotate-180");
+			setTimeout(() => {
+				this.dropdownContent?.classList.add("hidden");
+			}, this.animationDuration - 10);
+		}
 	}
 
-	// runs on initial page load
+	function dropdownToggleSetup() {
+		const langSelects = document.querySelectorAll<HTMLDivElement>(".lang-select__dropdown");
+		langSelects.forEach((langSelect) => new LangSelectController(langSelect));
+	}
+
+	// runs on page load
 	dropdownToggleSetup();
 
 	// runs on view transitions navigation
 	document.addEventListener("astro:after-swap", dropdownToggleSetup);
 </script>
-
-<style lang="scss">
-	.dropdown--fade-in {
-		animation: dropdownFadeInAnimation ease-out 0.15s forwards;
-		@apply visible opacity-100;
-	}
-
-	@keyframes dropdownFadeInAnimation {
-		0% {
-			@apply top-[90%];
-		}
-		100% {
-			@apply top-full;
-		}
-	}
-</style>

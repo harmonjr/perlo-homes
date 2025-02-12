@@ -12,9 +12,9 @@ interface Props {
 const { title, details } = Astro.props as Props;
 ---
 
-<div class="accordion group relative rounded-lg border border-base-300">
+<div class="accordion group border-base-300 relative rounded-lg border">
 	<button
-		class="primary-focus accordion__button flex w-full flex-1 items-center justify-between gap-2 p-3 text-left text-lg transition hover:text-primary-500 sm:px-4"
+		class="primary-focus accordion__button hover:text-primary-500 flex w-full flex-1 items-center justify-between gap-2 p-3 text-left text-lg transition sm:px-4"
 		type="button"
 		id={`${slugify(title)}-accordion-menu-button`}
 		aria-expanded="false"
@@ -33,7 +33,7 @@ const { title, details } = Astro.props as Props;
 		aria-labelledby={`${slugify(title)}-accordion-menu-button`}
 		class="accordion__content hidden max-h-0 overflow-hidden px-3 transition-all duration-300 ease-in-out sm:px-4"
 	>
-		<p class="prose prose-neutral mb-4 mt-1 max-w-full transition-[height]">
+		<p class="markdown-content prose-neutral mt-1 mb-4 max-w-full transition-[height]">
 			<Fragment set:html={details} />
 		</p>
 	</div>

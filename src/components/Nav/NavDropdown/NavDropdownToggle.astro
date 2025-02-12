@@ -22,7 +22,7 @@ const { navItem } = Astro.props as Props;
 <!-- non-mobile dropdown menu -->
 <li class="nav__dropdown group relative">
 	<button
-		class="primary-focus nav__dropdown-button flex w-full items-center gap-1 rounded-md px-3 py-2 font-medium transition hover:text-primary-500"
+		class="primary-focus nav__dropdown-button nav__link--base flex h-10 w-full items-center gap-1 rounded-md px-3 py-2"
 		type="button"
 		id={`${slugify(navItem.text)}-dropdown-menu`}
 		aria-expanded="false"
@@ -39,10 +39,15 @@ const { navItem } = Astro.props as Props;
 	<div
 		id={`${slugify(navItem.text)}-dropdown-menu-content`}
 		aria-labelledby={`${slugify(navItem.text)}-dropdown-menu`}
-		class="nav__dropdown-content invisible absolute left-0 z-10 opacity-0 transition-all"
+		data-state="closed"
+		class:list={[
+			"nav__dropdown-content absolute left-0 z-10 transition-all duration-200",
+			"slide-in-from-top-2 fade-in-0 animate-in hidden will-change-transform",
+			"data-[state=closed]:fade-out-0 data-[state=closed]:animate-out data-[state=closed]:duration-200",
+		]}
 	>
 		<ul
-			class="mt-4 w-[12rem] min-w-[9rem] max-w-[20rem] rounded-md border border-solid border-primary-400/50 bg-base-100 p-1.5 drop-shadow-md"
+			class="border-primary-400/50 bg-base-100 mt-4.5 w-[12rem] max-w-[20rem] min-w-[9rem] rounded-md border border-solid p-1.5 drop-shadow-md"
 		>
 			{navItem.dropdown.map((dropdownItem) => <NavLink navItem={dropdownItem} class="w-full" />)}
 		</ul>
@@ -50,66 +55,77 @@ const { navItem } = Astro.props as Props;
 </li>
 
 <script>
-	function dropdownToggleSetup() {
-		const dropdownMenus = document.querySelectorAll(".nav__dropdown");
-		dropdownMenus.forEach((dropdownMenu) => {
-			const dropdownButton = dropdownMenu.querySelector(".nav__dropdown-button");
-			const dropdownChevron = dropdownMenu.querySelector(".nav__dropdown-chevron");
-			const dropdownContent = dropdownMenu.querySelector(".nav__dropdown-content");
-			if (dropdownButton && dropdownContent && dropdownChevron) {
-				dropdownButton.addEventListener("click", (event) => {
-					if (!dropdownMenu.classList.contains("active")) {
-						// if dropdown is currently closed, so open it
-						dropdownMenu.classList.add("active");
-						dropdownButton.setAttribute("aria-expanded", "true");
-						dropdownContent.classList.add("dropdown--fade-in");
-						dropdownChevron.classList.add("rotate-180");
-					} else {
-						// dropdown is currently open, so close it
-						dropdownMenu.classList.remove("active");
-						dropdownButton.setAttribute("aria-expanded", "false");
-						dropdownContent.classList.remove("dropdown--fade-in");
-						dropdownChevron.classList.remove("rotate-180");
-					}
-					event.preventDefault();
-					return false;
-				});
+	class NavDropdownController {
+		private navDropdown: HTMLDivElement;
+		private dropdownButton: HTMLButtonElement | null;
+		private dropdownChevron: HTMLElement | null;
+		private dropdownContent: HTMLDivElement | null;
+		private animationDuration: number = 200;
 
-				// if dropdown menu is open there is a click outside, close the menu
-				document.addEventListener("click", (event) => {
-					if (
-						!dropdownMenu.contains(event.target as Node) &&
-						dropdownMenu.classList.contains("active")
-					) {
-						dropdownMenu.classList.remove("active");
-						dropdownButton.setAttribute("aria-expanded", "false");
-						dropdownContent.classList.remove("dropdown--fade-in");
-						dropdownChevron.classList.remove("rotate-180");
-					}
-				});
+		constructor(navDropdown: HTMLDivElement) {
+			this.navDropdown = navDropdown;
+			this.dropdownButton = navDropdown.querySelector(".nav__dropdown-button");
+			this.dropdownChevron = navDropdown.querySelector(".nav__dropdown-chevron");
+			this.dropdownContent = navDropdown.querySelector(".nav__dropdown-content");
+
+			if (!this.dropdownButton || !this.dropdownContent || !this.dropdownChevron) {
+				return;
 			}
-		});
+
+			this.init();
+		}
+
+		private init() {
+			this.dropdownButton?.addEventListener("click", this.handleDropdownClick.bind(this));
+			document.addEventListener("click", this.handleOutsideClick.bind(this));
+		}
+
+		private handleDropdownClick(event: MouseEvent) {
+			if (!this.navDropdown?.classList.contains("active")) {
+				this.openDropdown();
+			} else {
+				this.closeDropdown();
+			}
+			event.preventDefault();
+			return false;
+		}
+
+		private handleOutsideClick(event: MouseEvent) {
+			if (
+				!this.navDropdown?.contains(event.target as Node) &&
+				this.navDropdown?.classList.contains("active")
+			) {
+				this.closeDropdown();
+			}
+		}
+
+		private openDropdown() {
+			this.navDropdown.classList.add("active");
+			this.dropdownContent?.classList.remove("hidden");
+			this.dropdownButton?.setAttribute("aria-expanded", "true");
+			this.dropdownContent?.setAttribute("data-state", "open");
+			this.dropdownChevron?.classList.add("rotate-180");
+		}
+
+		private closeDropdown() {
+			this.navDropdown.classList.remove("active");
+			this.dropdownButton?.setAttribute("aria-expanded", "false");
+			this.dropdownContent?.setAttribute("data-state", "closed");
+			this.dropdownChevron?.classList.remove("rotate-180");
+			setTimeout(() => {
+				this.dropdownContent?.classList.add("hidden");
+			}, this.animationDuration - 10);
+		}
 	}
 
-	// runs on initial page load
-	dropdownToggleSetup();
+	function navDropdownToggleSetup() {
+		const navDropdown = document.querySelectorAll<HTMLDivElement>(".nav__dropdown");
+		navDropdown.forEach((navDropdown) => new NavDropdownController(navDropdown));
+	}
+
+	// runs on page load
+	navDropdownToggleSetup();
 
 	// runs on view transitions navigation
-	document.addEventListener("astro:after-swap", dropdownToggleSetup);
+	document.addEventListener("astro:after-swap", navDropdownToggleSetup);
 </script>
-
-<style lang="scss">
-	.dropdown--fade-in {
-		animation: navDropdownFadeInAnimation ease-out 0.15s forwards;
-		@apply visible opacity-100;
-	}
-
-	@keyframes navDropdownFadeInAnimation {
-		0% {
-			@apply top-[90%];
-		}
-		100% {
-			@apply top-full;
-		}
-	}
-</style>

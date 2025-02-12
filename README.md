@@ -1,7 +1,7 @@
 # Welcome to Stellar!
 
 1. To get started, first install all necessary packages with `npm install`, then run an initial build to make sure the setup works `npm run build`.
-2. Next, you'll want to configure your site i18n setup (one language, or multiple). Simply run the command `npm run config-i18n` and follow the script instructions to get setup! For further information, see the [i18n documentation](https://cosmicthemes.com/i18n/).
+2. Next, you'll want to configure your site i18n setup (one language, or multiple). Simply run the command `npm run config-i18n` and follow the script instructions to get setup! For further information, see the [i18n documentation](https://cosmicthemes.com/docs/i18n/).
 3. Now you can setup the site to your liking!
    - [Style customization](https://cosmicthemes.com/docs/styles/)
    - [Content editing](https://cosmicthemes.com/docs/content/)
@@ -21,8 +21,6 @@ The source files have the following setup. Note that not all files are included 
 .
 ├── .tours/
 │   └── code-intro.tour
-├── .vscode/
-│   └── extensions.json
 ├── public/
 │   ├── favicons/
 │   │   └── favicon.ico
@@ -65,15 +63,13 @@ The source files have the following setup. Note that not all files are included 
 │   │   ├── index.astro
 │   │   └── rss.xml.ts
 │   └── styles/
-│       └── global.scss
+│       └── global.css
 ├── .gitignore
 ├── .prettierrc.mjs
 ├── astro.config.mjs
 ├── netlify.toml
 ├── package.json
-├── package-lock.json
 ├── README.md
-├── tailwind.config.cjs
 └── tsconfig.json
 ```
 
@@ -94,7 +90,7 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory. I also frequently use `src/assets` for images when using Astro asssets for image optimization.
 
-### 🧞 Commands
+### Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -107,6 +103,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-### 👀 Want to learn more?
+### Want to learn more?
 
 Feel free to check out the [Astro documentation](https://docs.astro.build).

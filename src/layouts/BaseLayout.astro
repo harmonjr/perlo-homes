@@ -8,7 +8,7 @@ import Footer from "@components/Footer/Footer.astro";
 import CookieConsent from "@components/CookieConsent/CookieConsent.astro";
 
 // style import
-import "@/styles/global.scss";
+import "@/styles/global.css";
 
 // utils
 import { getLocaleFromUrl } from "@js/localeUtils";
@@ -54,10 +54,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 			noindex={noindex}
 		/>
 	</head>
-	<body
-		id="body"
-		class={`bg-base-50 ${siteSettings.useAnimations === true ? "use-animations" : ""}`}
-	>
+	<body id="body" class={`${siteSettings.useAnimations === true ? "use-animations" : ""}`}>
 		<!-- put cookie consent first so it is seen first by screen readers -->
 		<!-- <CookieConsent /> -->
 		<div class="min-h-[100lvh]">
