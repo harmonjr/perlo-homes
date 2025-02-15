@@ -136,17 +136,17 @@
 	.nav__link--base {
 		@apply hover:text-primary-500 leading-tight font-medium transition-colors;
 	}
-
-	/* focus utility class (for when user is tabbing through items on page) */
-	.primary-focus {
-		@apply focus-visible:outline-primary-500 focus:outline-none focus-visible:rounded-sm;
-	}
 }
 
 @layer utilities {
 	/* used with select field */
 	.sr-only {
 		@apply sr-only;
+	}
+
+	/* focus utility class (for when user is tabbing through items on page) */
+	.primary-focus {
+		@apply focus-visible:outline-primary-500 focus:outline-none focus-visible:rounded-sm focus-visible:outline-2;
 	}
 
 	.rotate-180 {
