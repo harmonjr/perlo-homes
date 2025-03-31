@@ -30,9 +30,20 @@ export interface AOSDefaultOptions extends AnimeOptions {
 	debounceDelay: number;
 }
 
+// Define a type for anime.js animation instance
+export interface AnimeInstance {
+	play: () => void;
+	pause: () => void;
+	restart: () => void;
+	reverse: () => void;
+	seek: (time: number) => void;
+	reversed: boolean;
+	completed: boolean;
+}
+
 export interface AOSElement {
 	node: HTMLElement;
-	animation?: any; // animeJS animation
+	animation?: AnimeInstance; // Replace 'any' with a more specific type
 	animated?: boolean;
 	position?: {
 		in?: number;

@@ -1,5 +1,5 @@
-// data
-import { locales, defaultLocale } from "@config/siteSettings.json";
+import type { CollectionEntry, DataEntryMap } from "astro:content";
+import { locales, defaultLocale } from "@/config/siteSettings.json";
 
 /**
  * * returns the current locale gathered from the URL
@@ -14,23 +14,21 @@ import { locales, defaultLocale } from "@config/siteSettings.json";
 export function getLocaleFromUrl(url: URL): (typeof locales)[number] {
 	const [, locale] = url.pathname.split("/");
 
-	//@ts-ignore
+	//@ts-expect-error element is guaranteed to be an appropriate string
 	if (locales.includes(locale)) return locale as (typeof locales)[number];
 	return defaultLocale;
 }
 
 /**
- * * return a content collection (such as blog posts) array filtered by language
- * @param collection: content collection array
- * @param locale: language to filter by (one of the above locales)
- * @param removeLocale: boolean (optional, default TRUE) - remove the locale from the slug field
- * @returns filtered content collection array
- *
- *  ## Example
+ * * filters a collection by language
+ * @param collection: any[] collection to filter
+ * @param locale: string language to filter by
+ * @param removeLocale: boolean whether to remove the locale from the URL
+ * @returns any[] filtered collection
  *
  * ```ts
- *  import { getAllPosts } from "@js/blogUtils";
- *  import { filterCollectionByLanguage } from "@js/i18nUtils";
+ *  import { getAllPosts } from "@/js/blogUtils";
+ *  import { filterCollectionByLanguage } from "@/js/i18nUtils";
  *  const posts = await getAllPosts();
  *  const filteredPosts = filterCollectionByLanguage(posts, "de");
  * ```
@@ -39,11 +37,11 @@ export function getLocaleFromUrl(url: URL): (typeof locales)[number] {
  *
  * Your content collections should be paths like `src/data/blog/de/my-post.md` and `src/data/blog/en/my-post.md`
  */
-export function filterCollectionByLanguage(
-	collection: any[],
+export function filterCollectionByLanguage<T extends keyof DataEntryMap>(
+	collection: CollectionEntry<T>[],
 	locale: (typeof locales)[number],
 	removeLocale: boolean = true,
-): any[] {
+): CollectionEntry<T>[] {
 	// check if the passed language is in the languages array
 	if (!locales.includes(locale)) {
 		console.error(`Language ${locale} not found in locales array`);
@@ -55,7 +53,6 @@ export function filterCollectionByLanguage(
 	// remove locale from URL
 	if (removeLocale) {
 		filteredCollection.forEach((item) => {
-			// @ts-ignore (it's fine, we're just removing the locale from the URL)
 			item.id = removeLocaleFromSlug(item.id);
 		});
 	}
@@ -76,7 +73,7 @@ export function removeLocaleFromSlug(slug: string): string {
 
 	// map over the URL parts and remove any locales
 	const newSlugElements = SlugElements.filter(
-		//@ts-ignore
+		//@ts-expect-error element is guaranteed to be an appropriate string
 		(element) => !locales.includes(element),
 	);
 

@@ -4,7 +4,7 @@ import { collectFiles } from "./collect-files.js";
 export function formatTranslationText(text) {
 	// Convert snake_case or kebab-case to Sentence case and normalize spaces
 	return text
-		.replace(/[_\.-]/g, " ")
+		.replace(/[_.-]/g, " ")
 		.toLowerCase()
 		.replace(/^\w/, (c) => c.toUpperCase())
 		.replace(/\s+/g, " ");
@@ -31,6 +31,11 @@ export async function removeTextTranslations(logging = false) {
 				"",
 			);
 			content = content.replace(/const\s+\w+\s*=\s*useTranslations\s*\(\s*[^)]*\s*\)\s*;?\s*/g, "");
+			// also remove any import { useTranslations } from "@/docs/js/translationUtils";
+			content = content.replace(
+				/import\s*{\s*useTranslations\s*}\s*from\s*['"]@\/docs\/js\/translationUtils['"]\s*;?\s*/g,
+				"",
+			);
 			// Only write if content changed
 			if (content !== originalContent) {
 				await writeFile(filepath, content, "utf-8");

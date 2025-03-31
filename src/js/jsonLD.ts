@@ -1,8 +1,8 @@
 import { type CollectionEntry } from "astro:content";
 
 // utils
-import { getTranslatedData } from "@js/translationUtils";
-import { defaultLocale } from "@config/siteSettings.json";
+import { getTranslatedData } from "@/js/translationUtils";
+import { defaultLocale } from "@/config/siteSettings.json";
 
 // data - siteData.title should not change based on locale so this should be fine
 const siteData = getTranslatedData("siteData", defaultLocale);
@@ -14,7 +14,7 @@ interface GeneralProps {
 export interface BlogProps {
 	type: "blog";
 	postFrontmatter: CollectionEntry<"blog">["data"];
-	image: any; // result of getImage() from Seo.astro
+	image: ImageMetadata; // result of getImage() from Seo.astro
 	authors: CollectionEntry<"authors">[];
 	canonicalUrl: URL;
 }
@@ -26,7 +26,7 @@ export default function jsonLDGenerator(props: JsonLDProps) {
 	if (type === "blog") {
 		const { postFrontmatter, image, authors, canonicalUrl } = props as BlogProps;
 
-		let authorsJsonLdArray = authors.map((author) => {
+		const authorsJsonLdArray = authors.map((author) => {
 			return {
 				"@type": "Person",
 				name: author.data.name,

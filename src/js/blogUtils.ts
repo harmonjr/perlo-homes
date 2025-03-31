@@ -1,11 +1,11 @@
-import { type CollectionEntry, getCollection, getEntryBySlug, getEntries } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 // utils
-import { removeLocaleFromSlug, filterCollectionByLanguage } from "@js/localeUtils";
-import { slugify } from "@js/textUtils";
+import { removeLocaleFromSlug, filterCollectionByLanguage } from "@/js/localeUtils";
+import { slugify } from "@/js/textUtils";
 
 // data
-import { locales, defaultLocale } from "@config/siteSettings.json";
+import { locales } from "@/config/siteSettings.json";
 
 // --------------------------------------------------------
 /**
@@ -33,7 +33,7 @@ import { locales, defaultLocale } from "@config/siteSettings.json";
 export async function getAllPosts(
 	lang?: (typeof locales)[number],
 ): Promise<CollectionEntry<"blog">[]> {
-	const posts = await getCollection("blog", ({ data, id }) => {
+	const posts = await getCollection("blog", ({ data }) => {
 		// filter out draft posts
 		return data.draft !== true;
 	});
@@ -42,7 +42,7 @@ export async function getAllPosts(
 	let filteredPosts: CollectionEntry<"blog">[];
 	if (lang) {
 		// console.log("filtering by language", lang);
-		filteredPosts = filterCollectionByLanguage(posts, lang);
+		filteredPosts = filterCollectionByLanguage(posts, lang) as CollectionEntry<"blog">[];
 		// filteredPosts = posts;
 	} else {
 		// console.log("no language passed, returning all posts");
@@ -113,7 +113,6 @@ export function formatPosts(
 	if (removeLocale) {
 		filteredPosts.forEach((post) => {
 			// console.log("removing locale from slug for post", post.id);
-			// @ts-ignore (it's fine, we're just removing the locale from the URL)
 			post.id = removeLocaleFromSlug(post.id);
 		});
 	}
@@ -145,9 +144,22 @@ export function arePostsRelated(
 	// if titles are the same, then they are the same post. return false
 	if (postOne.id === postTwo.id) return false;
 
-	const postOneCategories = postOne.data.categories.map((category) => slugify(category));
+	// if either post has no categories, return false
+	if (
+		!postOne.data.categories ||
+		!postTwo.data.categories ||
+		postOne.data.categories.length === 0 ||
+		postTwo.data.categories.length === 0
+	)
+		return false;
 
-	const postTwoCategories = postTwo.data.categories.map((category) => slugify(category));
+	const postOneCategories = postOne.data.categories
+		.filter((category): category is string => typeof category === "string")
+		.map((category) => slugify(category));
+
+	const postTwoCategories = postTwo.data.categories
+		.filter((category): category is string => typeof category === "string")
+		.map((category) => slugify(category));
 
 	// if any tags or categories match, return true
 	const categoriesMatch = postOneCategories.some((category) =>
@@ -189,9 +201,9 @@ export function countItems(items: string[]): object {
  * note: return looks like [ [ 'productivity', 2 ], [ 'cool-code', 1 ] ]
  * note: this is used for tag and category cloud ordering
  */
-export function sortByValue(jsObj: object): any[] {
-	var array: any[] = [];
-	for (var i in jsObj) {
+export function sortByValue(jsObj: object): [string, number][] {
+	const array: [string, number][] = [];
+	for (const i in jsObj) {
 		array.push([i, jsObj[i]]);
 	}
 

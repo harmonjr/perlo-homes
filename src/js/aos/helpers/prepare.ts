@@ -8,7 +8,7 @@ import { type AOSElement, type AOSDefaultOptions } from "./aosTypes";
 import { getAnimation } from "../anime/animations";
 
 const prepare = function (aosElements: AOSElement[], options: AOSDefaultOptions): AOSElement[] {
-	aosElements.forEach((el, i) => {
+	aosElements.forEach((el) => {
 		const animationName = el.node.getAttribute("data-aos") as string;
 		const mirror = getInlineOption(el.node, "mirror", options.mirror) as boolean;
 		const once = getInlineOption(el.node, "once", options.once) as boolean;
