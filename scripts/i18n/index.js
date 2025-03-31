@@ -1,19 +1,16 @@
-import { promptForLocales } from "./i18n/prompts.js";
-import { updateAstroConfig } from "./i18n/config-updaters/astro-config.js";
-import { updateSiteSettings } from "./i18n/config-updaters/site-settings.js";
-import { updateTranslationData } from "./i18n/config-updaters/translation-data.js";
-import { updateKeystaticConfig } from "./i18n/config-updaters/keystatic-config.js";
-import { handleFolderOperations } from "./i18n/folder-operations.js";
-import { removeHrefTranslations } from "./i18n/utils/remove-href-translations.js";
-import { removeTextTranslations } from "./i18n/utils/remove-text-translations.js";
-import { setConfigPaths } from "./i18n/types.js";
-import { logSection } from "./i18n/utils/logging.js";
+import { promptForLocales } from "./prompts.js";
+import { updateAstroConfig } from "./config-updaters/astro-config.js";
+import { updateSiteSettings } from "./config-updaters/site-settings.js";
+import { updateTranslationData } from "./config-updaters/translation-data.js";
+import { updateKeystaticConfig } from "./config-updaters/keystatic-config.js";
+import { handleFolderOperations } from "./folder-operations.js";
+import { removeHrefTranslations } from "./utils/remove-href-translations.js";
+import { removeTextTranslations } from "./utils/remove-text-translations.js";
+import { logSection } from "./utils/logging.js";
 /**
  * Main function that orchestrates the i18n configuration process
  */
 async function configI18n() {
-	// Set paths for regular project
-	setConfigPaths("default");
 	// Configure extra logging
 	const logOptions = { enabled: false, section: true };
 	// Step 1: Get locale preferences from user
@@ -55,4 +52,4 @@ function displayCompletionMessage(multipleLanguages) {
 }
 // Run the configuration process
 configI18n();
-//# sourceMappingURL=config-i18n.js.map
+//# sourceMappingURL=index.js.map

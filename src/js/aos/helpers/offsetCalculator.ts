@@ -65,7 +65,6 @@ export const getPositionIn = (
 };
 
 export const getPositionOut = (el: HTMLElement, defaultOffset: number): number => {
-	const windowHeight = window.innerHeight;
 	const trigger = getInlineOption(el, "trigger") as string;
 	const additionalOffset = getInlineOption(el, "offset", defaultOffset) as number;
 	let finalEl = el;

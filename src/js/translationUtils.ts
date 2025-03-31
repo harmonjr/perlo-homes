@@ -5,8 +5,8 @@ import {
 	textTranslations,
 	dataTranslations,
 	routeTranslations,
-} from "@config/translationData.json";
-import { locales, defaultLocale } from "@config/siteSettings.json";
+} from "@/config/translationData.json";
+import { locales, defaultLocale } from "@/config/siteSettings.json";
 
 /**
  * * text translation helper function
@@ -16,7 +16,7 @@ import { locales, defaultLocale } from "@config/siteSettings.json";
  * ## Example
  *
  * ```ts
- * import { useTranslations, getLocaleFromUrl } from "@js/i18nUtils";
+ * import { useTranslations, getLocaleFromUrl } from "@/js/i18nUtils";
  * const currLocale = getLocaleFromUrl(Astro.url);
  * const t = useTranslations(currLocale);
  * t("blog.time"); // translated string for key "blog.time" in the current locale
@@ -39,8 +39,8 @@ type DataKey<T extends Locale> = keyof (typeof dataTranslations)[T];
  * ## Example
  *
  * ```ts
- * import { getLocaleFromUrl } from "@js/i18nUtils";
- * import { getTranslatedData } from "@js/translations";
+ * import { getLocaleFromUrl } from "@/js/i18nUtils";
+ * import { getTranslatedData } from "@/js/translations";
  * const currLocale = getLocaleFromUrl(Astro.url);
  * const siteData = getTranslatedData("siteData", currLocale);
  * ```
@@ -69,7 +69,7 @@ export function getLocalizedPathname(locale: (typeof locales)[number], url: URL)
 	};
 
 	let oldPath: string, currLocale: (typeof locales)[number];
-	//@ts-ignore
+	// @ts-expect-error the whole point of this is to check if lang is a valid locale
 	if (locales.includes(lang)) {
 		// remove locale from URL if it's already there
 		oldPath = rest.join("/");

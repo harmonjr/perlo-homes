@@ -1,6 +1,6 @@
 // site data types
 export interface SiteDataProps {
-	name: String;
+	name: string;
 	title: string;
 	description: string;
 	contact: {

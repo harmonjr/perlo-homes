@@ -96,7 +96,7 @@ const refresh = function refresh(initialize = false) {
  */
 const recalculatePositions = function recalculate() {
 	if (initialized) {
-		aosElements.forEach((el, i) => {
+		aosElements.forEach((el) => {
 			el.position = {
 				in: getPositionIn(el.node, options.offset, options.anchorPlacement),
 				out: options.mirror && getPositionOut(el.node, options.offset),
@@ -127,7 +127,7 @@ const refreshHard = function refreshHard() {
  * Remove all attributes to reset applied styles
  */
 const disable = function () {
-	aosElements.forEach(function (el: any, i) {
+	aosElements.forEach((el) => {
 		el.node.removeAttribute("data-aos");
 		el.node.removeAttribute("data-aos-delay");
 		el.node.removeAttribute("data-aos-distance");
