@@ -8,6 +8,18 @@ import { getLocaleFromUrl } from "@js/localeUtils";
 // data
 import { type navLinkItem } from "@config/types/configDataTypes";
 
+/**
+ * Compares two paths ensuring they both have trailing slashes for consistency
+ * @param path1 First path to compare
+ * @param path2 Second path to compare
+ * @returns boolean indicating if the paths are equal
+ */
+const comparePathsWithTrailingSlash = (path1: string, path2: string): boolean => {
+	const ensureTrailingSlash = (path: string): string => (path.endsWith("/") ? path : `${path}/`);
+
+	return ensureTrailingSlash(path1) === ensureTrailingSlash(path2);
+};
+
 interface Props {
 	navItem: navLinkItem;
 	class?: string;
@@ -32,6 +44,8 @@ if (!link.includes(domain) && !link.startsWith("/") && !link.startsWith("#")) {
 if (actualLink.endsWith("/") && actualLink !== "/") {
 	actualLink = actualLink.slice(0, -1);
 }
+
+const currentPath = comparePathsWithTrailingSlash(Astro.url.pathname, actualLink);
 ---
 
 <li>
@@ -40,7 +54,7 @@ if (actualLink.endsWith("/") && actualLink !== "/") {
 			`primary-focus nav__link--base relative flex h-10 w-full items-center gap-1.5 rounded-md px-4 py-2 ${className}`,
 			{
 				// styling for current active page link
-				"bg-primary-200": Astro.url.pathname === actualLink,
+				"bg-primary-200": currentPath,
 			},
 		]}
 		href={actualLink}
