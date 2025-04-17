@@ -146,7 +146,7 @@
 
 	/* focus utility class (for when user is tabbing through items on page) */
 	.primary-focus {
-		@apply focus-visible:outline-primary-500 focus:outline-none focus-visible:rounded-sm focus-visible:outline-2;
+		@apply focus-visible:ring-primary-500 focus:ring-offset-base-100 focus:outline-none focus-visible:rounded-sm focus-visible:ring-2;
 	}
 
 	.rotate-180 {
