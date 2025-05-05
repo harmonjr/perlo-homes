@@ -3,15 +3,12 @@ import { getImage } from "astro:assets";
 import { type CollectionEntry } from "astro:content";
 import { SEO } from "astro-seo";
 
-// component import
+import jsonLDGenerator from "@/js/jsonLD";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
 import HrefLang from "./HrefLang.astro";
-import jsonLDGenerator from "@js/jsonLD";
 
-// utils
-import { getLocaleFromUrl } from "@js/localeUtils";
-import { getTranslatedData } from "@js/translationUtils";
-
-// data
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 
@@ -39,21 +36,25 @@ let optimizedImage;
 let jsonLD;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
-// if this is a blog page we do things differently
-if (type === "blog") {
-	const { authors, postFrontmatter } = Astro.props as BlogProps;
-
+if (image) {
 	optimizedImage = await getImage({
 		src: image,
 		format: "webp",
 		quality: "high",
 		width: 1200,
 	});
+}
+
+// if this is a blog page we do things differently
+if (type === "blog") {
+	const { authors, postFrontmatter } = Astro.props as BlogProps;
+
+	const jsonldImage = image ? optimizedImage : siteData.defaultImage;
 
 	jsonLD = jsonLDGenerator({
 		type: "blog",
 		postFrontmatter: postFrontmatter,
-		image: optimizedImage,
+		image: jsonldImage,
 		authors: authors,
 		canonicalUrl: canonicalUrl,
 	});
