@@ -62,6 +62,10 @@ const Blog = (locale: (typeof locales)[number]) =>
 				label: "Updated Date",
 				description: "If you update this post at a later date, put that date here.",
 			}),
+			mappingKey: fields.text({
+				label: "Mapping Key",
+				description: "This is used to map entries between languages.",
+			}),
 			heroImage: fields.image({
 				label: "Hero Image",
 				publicPath: "../",
@@ -205,6 +209,10 @@ const Services = (locale: (typeof locales)[number]) =>
 				publicPath: "../",
 				validation: { isRequired: true },
 			}),
+			mappingKey: fields.text({
+				label: "Mapping Key",
+				description: "This is used to map entries between languages.",
+			}),
 			draft: fields.checkbox({
 				label: "Draft",
 				description: "Set this page as draft to prevent it from being published.",
@@ -260,6 +268,10 @@ const OtherPages = (locale: (typeof locales)[number]) =>
 			description: fields.text({
 				label: "Description",
 				validation: { isRequired: true, length: { min: 1, max: 160 } },
+			}),
+			mappingKey: fields.text({
+				label: "Mapping Key",
+				description: "This is used to map entries between languages.",
 			}),
 			draft: fields.checkbox({
 				label: "Draft",
