@@ -73,16 +73,46 @@ export const textTranslations = {
  * * Route translations are used to translate route names for the language switcher component
  * This can be useful for SEO reasons. The key does not matter, it just needs to match between languages
  *
- * ## Examples
+ * These routes must be everything after the base domain. So if this is "atlas.com/blog", the route would be "blog"
+ * Or if this is "atlas.com/legal/privacy", the route would be "legal/privacy"
  *
- * These routes must be everything after the base domain. So if this is "site.com/blog", the route would be "blog"
- * Or if this is "ste.com/blog/my-post", the route would be "blog/my-post"
+ * This also supports wildcards. For example, "categories/*" would match "categories/1" or "categories/2" etc for that language.
+ *
+ * Note: This works in conjunction with the localizedCollections object below
  */
 export const routeTranslations = {
 	en: {
 		aboutKey: "about",
+		categoryKey: "categories",
+		categoryKey2: "categories/*",
+		categoryKey3: "categories",
 	},
 	fr: {
 		aboutKey: "a-propos",
+		categoryKey: "categories",
+		categoryKey2: "categories",
+		categoryKey3: "categories/*",
 	},
+} as const;
+
+/**
+ * * Content collection translations used by the language switcher and hreflang generator
+ *
+ * Per-collection, per-locale route base mapping (collections to localize are the keys)
+ *
+ * If you have a key of "blog" then the blog content collection will be localized. This will look
+ * for a "mappingKey" in the entry metadata, and use that to map the entry to the correct locale
+ *
+ * You can use the locale value to map the collection to a different route if desired
+ */
+export const localizedCollections = {
+	blog: {
+		en: "blog",
+		fr: "blog",
+	},
+	services: {
+		en: "services",
+		fr: "services",
+	},
+	// Add more collections/locales as needed
 } as const;

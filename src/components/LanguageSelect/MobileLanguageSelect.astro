@@ -21,6 +21,13 @@ interface Props {
 const { class: className, ...rest } = Astro.props as Props;
 
 const currLocale = getLocaleFromUrl(Astro.url);
+
+// Precompute the localized paths for each locale (since getLocalizedPathname is async)
+const localizedPaths = Object.fromEntries(
+	await Promise.all(
+		locales.map(async (lang) => [lang, await getLocalizedPathname(lang, Astro.url)]),
+	),
+);
 ---
 
 <div class:list={["mobile-lang__dropdown description group relative text-sm", className]} {...rest}>
@@ -54,7 +61,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 					<li class="flex w-full">
 						<a
 							class="primary-focus relative block w-full py-1 pl-8 leading-tight font-medium whitespace-nowrap transition"
-							href={getLocalizedPathname(lang, Astro.url)}
+							href={localizedPaths[lang]}
 							aria-label={`Change language to ${lang.toUpperCase()}`}
 						>
 							{languageSwitcherMap[lang]}

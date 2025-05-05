@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 	}));
 }
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+type Props = CollectionEntry<"otherPages">;
 const page = Astro.props as Props;
 
 // convert markdown to html

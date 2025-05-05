@@ -21,6 +21,13 @@ interface Props {
 const { class: className, ...rest } = Astro.props as Props;
 
 const currLocale = getLocaleFromUrl(Astro.url);
+
+// Precompute the localized paths for each locale (since getLocalizedPathname is async)
+const localizedPaths = Object.fromEntries(
+	await Promise.all(
+		locales.map(async (lang) => [lang, await getLocalizedPathname(lang, Astro.url)]),
+	),
+);
 ---
 
 <li
@@ -68,7 +75,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 					<li class="flex w-full justify-center">
 						<a
 							class="primary-focus nav__link--base relative block w-full py-1 whitespace-nowrap"
-							href={getLocalizedPathname(lang, Astro.url)}
+							href={localizedPaths[lang]}
 							aria-label={`Change language to ${lang.toUpperCase()}`}
 							data-astro-reload
 						>

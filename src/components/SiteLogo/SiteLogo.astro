@@ -1,5 +1,5 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLocalizedRoute } from "@/js/translationUtils";
 import { Image } from "astro:assets";
 
 // images
@@ -16,7 +16,7 @@ const siteData = getTranslatedData("siteData", currLocale);
 
 <a
 	class="primary-focus flex items-center align-middle"
-	href={getRelativeLocaleUrl(currLocale)}
+	href={getLocalizedRoute(currLocale)}
 	class=""
 >
 	<p class="sr-only">{siteData.title}</p>
