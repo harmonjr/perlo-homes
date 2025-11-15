@@ -5,7 +5,7 @@
  * ! If you can an error for an icon like "Error: Not Found: "calendar-check" in pack "tabler",
  * ! You can copy to actual SVG into src/icons and name it however and use similar to below
  */
-import { getLocalizedRoute } from "@/js/translationUtils";
+
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
@@ -73,7 +73,7 @@ import image from "@assets/images/happy-family-crop2.png";
 						<div class="text-base-900 mt-10 flex">
 							<Button
 								variant="primary"
-								href={getLocalizedRoute(currLocale, "/contact")}
+								href={"/contact"}
 								arrow="right"
 							>
 								Schedule a free estimate

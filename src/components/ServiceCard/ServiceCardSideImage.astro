@@ -4,7 +4,6 @@
  * Recommend using 2 or 3 cards in a row
  */
 
-import { getLocalizedRoute } from "@/js/translationUtils";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
@@ -34,7 +33,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 		<h2 class="h2 mt-6">{title}</h2>
 		<p class="mt-4 opacity-80">{details}</p>
 		<div class="z-20 mt-4 flex">
-			<Button variant="ghost" href={getLocalizedRoute(currLocale, href)} arrow="right">
+			<Button variant="ghost" href={href} arrow="right">
 				Learn more <span class="sr-only">about {title}</span>
 			</Button>
 		</div>

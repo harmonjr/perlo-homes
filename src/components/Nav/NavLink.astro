@@ -1,5 +1,5 @@
 ---
-import { getLocalizedRoute } from "@/js/translationUtils";
+
 import { Icon } from "astro-icon/components";
 
 // utils
@@ -38,7 +38,7 @@ if (!link.includes(domain) && !link.startsWith("/") && !link.startsWith("#")) {
 	actualLink = link;
 } else {
 	// internal link, so we need to add the locale to the link
-	actualLink = getLocalizedRoute(currLocale, link);
+	actualLink = link;
 }
 // remove trailing slash so IDs will work
 if (actualLink.endsWith("/") && actualLink !== "/") {

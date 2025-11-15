@@ -4,7 +4,7 @@
  *
  * There is a commented out "awards" section below in case you want that
  */
-import { getLocalizedRoute } from "@/js/translationUtils";
+
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
@@ -13,16 +13,14 @@ import Button from "@components/Button/Button.astro";
 
 // utils
 import { getLocaleFromUrl } from "@js/localeUtils";
-import { useTranslations } from "@js/translationUtils";
-
 // images
-import heroImage from "@assets/images/business-owner-min.png";
+import heroImage from "@assets/images/wade-nagy-perlo-homes.png";
+// import heroImage from "@assets/images/business-owner-min.png";
 import award1 from "@images/awards/award-yelp.png";
 import award2 from "@images/awards/award-homeadvisor.png";
 import award3 from "@images/awards/award-angieslist.png";
 
 const currLocale = getLocaleFromUrl(Astro.url);
-const t = useTranslations(currLocale);
 ---
 
 <section id="hero" class="relative mb-14 flex min-h-[60svh] w-full overflow-clip pb-10">
@@ -77,12 +75,12 @@ const t = useTranslations(currLocale);
 				</span>
 			</h1>
 			<p class="description mt-6" data-aos="fade-up">
-				{t("hero_description")}
+				Hero description
 			</p>
 			<div class="mt-6 flex gap-4">
 				<Button
 					variant="primary"
-					href={getLocalizedRoute(currLocale, "/contact")}
+					href={"/contact"}
 					data-aos="fade-up"
 					data-aos-delay=".9"
 				>

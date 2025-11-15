@@ -1,5 +1,5 @@
 import rss from "@astrojs/rss";
-import { getLocalizedRoute } from "@/js/translationUtils";
+
 import { getCollection, type CollectionEntry } from "astro:content";
 
 // utils
@@ -58,7 +58,7 @@ export async function GET(context) {
 
 			// Compute RSS link from post `slug`
 			// This example assumes all posts are rendered as `/blog/[slug]` routes
-			link: getLocalizedRoute(rssLocale, `/blog/${post.id}/`),
+			link: `/blog/${post.id}/`,
 		})),
 	});
 }

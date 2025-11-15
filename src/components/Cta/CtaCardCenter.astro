@@ -2,7 +2,7 @@
 /**
  * * CTA card with centered text and corner blobs
  */
-import { getLocalizedRoute } from "@/js/translationUtils";
+
 import { Icon } from "astro-icon/components";
 
 // components
@@ -61,7 +61,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 						<div class="mt-10 flex justify-center">
 							<Button
 								variant="primary"
-								href={getLocalizedRoute(currLocale, "/contact")}
+								href={"/contact"}
 								arrow="right"
 							>
 								Schedule a free estimate

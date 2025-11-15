@@ -8,7 +8,6 @@
  * - Setup GA4 and GTM: https://webreaper.dev/posts/astro-google-tag-manager-ga4/
  * - Cookie consent with GA4: https://webreaper.dev/posts/google-tag-manager-cookie-consent/
  */
-import { getLocalizedRoute } from "@/js/translationUtils";
 
 // components
 import Button from "@components/Button/Button.astro";
@@ -27,7 +26,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 		<div class="text-center">
 			<p class="text-sm lg:text-base">
 				We use cookies to improve your experience on this site. To learn more, see our <a
-					href={getLocalizedRoute(currLocale, "/privacy-policy")}
+					href={"/privacy-policy"}
 					class="decoration-primary-500 hover:text-primary-500 underline transition"
 					>Privacy Policy</a
 				>.

@@ -8,15 +8,10 @@
  * Every {Data} key must exist in the below object
  */
 import siteDataEn from "./en/siteData.json";
-import siteDataFr from "./fr/siteData.json";
 import navDataEn from "./en/navData.json";
-import navDataFr from "./fr/navData.json";
 import faqDataEn from "./en/faqData.json";
-import faqDataFr from "./fr/faqData.json";
 import teamDataEn from "./en/teamData.json";
-import teamDataFr from "./fr/teamData.json";
 import testimonialDataEn from "./en/testimonialData.json";
-import testimonialDataFr from "./fr/testimonialData.json";
 
 export const dataTranslations = {
 	en: {
@@ -26,13 +21,7 @@ export const dataTranslations = {
 		teamData: teamDataEn,
 		testimonialData: testimonialDataEn,
 	},
-	fr: {
-		siteData: siteDataFr,
-		navData: navDataFr,
-		faqData: faqDataFr,
-		teamData: teamDataFr,
-		testimonialData: testimonialDataFr,
-	},
+	
 } as const;
 
 /**
@@ -42,16 +31,12 @@ export const dataTranslations = {
  *
  * ```ts
  * import { getLocaleFromUrl } from "@js/localeUtils";
- * import { useTranslations } from "@js/translationUtils";
- * const currLocale = getLocaleFromUrl(Astro.url);
- * const t = useTranslations(currLocale);
- * t("back_to_all_posts"); // this would be "Retour à tous les articles" if the current locale is "fr"
+ * * const currLocale = getLocaleFromUrl(Astro.url);
+ * * t("back_to_all_posts"); // this would be "Retour à tous les articles" if the current locale is "fr"
  * ```
  * or
  * ```ts
- * import { useTranslations } from "@js/translationUtils";
- * const t = useTranslations("fr");
- * t("back_to_all_posts"); // this would be "Retour à tous les articles"
+ * * * t("back_to_all_posts"); // this would be "Retour à tous les articles"
  * ```
  */
 export const textTranslations = {
@@ -61,12 +46,7 @@ export const textTranslations = {
 		back_to_all_posts: "Back to all posts",
 		updated: "Updated",
 	},
-	fr: {
-		hero_description:
-			"Je ne parle pas vraiment français donc j'utilise Google Translate pour quelques parties de cette démo.",
-		back_to_all_posts: "Retour à tous les articles",
-		updated: "Mis à jour",
-	},
+	
 } as const;
 
 /**
@@ -87,12 +67,7 @@ export const routeTranslations = {
 		categoryKey2: "categories/*",
 		categoryKey3: "categories",
 	},
-	fr: {
-		aboutKey: "a-propos",
-		categoryKey: "categories",
-		categoryKey2: "categories",
-		categoryKey3: "categories/*",
-	},
+	
 } as const;
 
 /**
@@ -107,12 +82,10 @@ export const routeTranslations = {
  */
 export const localizedCollections = {
 	blog: {
-		en: "blog",
-		fr: "blog",
+		en: "blog"
 	},
 	services: {
-		en: "services",
-		fr: "services",
+		en: "services"
 	},
 	// Add more collections/locales as needed
 } as const;

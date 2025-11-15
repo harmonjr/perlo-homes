@@ -3,7 +3,7 @@
  * * About page with various sections including some text, team profiles, and CTA
  * Edit the team member information inside src/config/teamData.json.ts
  */
-import { getLocalizedRoute } from "@/js/translationUtils";
+
 import { Icon } from "astro-icon/components";
 
 // main layout
@@ -22,7 +22,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const teamData = getTranslatedData("teamData", currLocale);
 ---
 
-<BaseLayout title="Contact Me" description="Get in touch! Contact information for Blogsmith.">
+<BaseLayout title="Contact Me" description="Get in touch! Contact information for Wade Nagy.">
 	<!-- text section -->
 	<section class="site-container mx-auto pt-36 md:pt-44">
 		<h1 class="h1 text-center">
@@ -39,10 +39,9 @@ const teamData = getTranslatedData("teamData", currLocale);
 			</span>
 		</h1>
 		<p class="description mx-auto mt-10 max-w-2xl text-center md:mt-20">
-			Since 1990 we have been providing the best painting services in the area. We are a family
-			owned and operated business that takes pride in our work and our community. We are fully
-			licensed and insured and have a long list of references available upon request. We look
-			forward to working with you!
+			We are a family owned and operated business that takes pride in our work and our community.
+			We are fully licensed and insured and have a long list of references available upon request.
+			We look forward to working with you!
 		</p>
 	</section>
 

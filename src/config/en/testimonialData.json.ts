@@ -1,62 +1,41 @@
 import { type TestimonialItem } from "../types/configDataTypes";
 
-import BowTiedFocus from "@images/BowTiedFocus.jpg";
-import TravisB from "@images/travis-b.png";
-import Isaac from "@images/isaac_saas.jpg";
-import Aniket from "@images/aniket_p.jpg";
-import David from "@images/david-g-davedev.png";
-import Damiano from "@images/damiano.jpg";
+import AshleyMoore from "@images/Ashley-Moore.jpg";
+import AshleyBoneske from "@images/Ashley-Boneske.jpg";
+import JenniferSnyder from "@images/Jennifer-snyder.png";
+import EmmaNagy from "@images/emma-nagy.png";
 
 export const testimonialData: TestimonialItem[] = [
 	{
-		avatar: Aniket,
-		name: "Aniket P",
-		title: "Data Scientist",
-		testimonial: `I'm not a front-end dev, but I wanted to rebuild my personal site with Astro. If you're in the same shoes,
-      I can't recommend enough Cosmic Themes.
+		avatar: AshleyMoore,
+		name: "Ashley Moore",
+		title: "Real Estate Agent",
+		testimonial: `We have always had the best experience with Wade in every project he has done for us. His knowledge of construction, and ability to take a vision and make it reality far surpasses others. We highly recommend him for any home construction, remodel, addition needs that you have.
       `,
 	},
 	{
-		avatar: BowTiedFocus,
-		name: "BowTiedFocus",
-		title: "Frontend Engineer",
-		testimonial: `The Blogsmith Pro theme is ridiculously well put together and documented.
-      I learned a ton about Astro engineering by studying it, and I've already used some of the components
-      for my web design clients. 
+		avatar: AshleyBoneske,
+		name: "Ashley Boneske",
+		title: "Happy Customer",
+		testimonial: `Wade Nagy with Perlo Homes is one of the most knowledgeable builders I know. His skills are top notch and his work ethic is too. He always worked with us on any issues we had to make sure we were pleased with the quality, timeline and even materials used. I recommend him to anyone who needs a builder - or just needs help with home improvement projects in general. He’s my go-to and he will be yours, too, once you shake his hand. Perlo Homes is one of the best.
       `,
 	},
 	{
-		avatar: Damiano,
-		name: "Damiano L",
-		title: "C++ Developer",
-		testimonial: `Cosmic Themes provides some of the best Astro themes out there. They are well designed, easy to customize and, 
-      most importantly, the team is very responsive concerning support and feature requests.
+		avatar: JenniferSnyder,
+		name: "Jennifer Snyder",
+		title: "Happy Customer",
+		testimonial: `Wade Nagy with Perlo Homes is one of the most knowledgeable builders I know. His skills are top notch and his work ethic is too. He always worked with us on any issues we had to make sure we were pleased with the quality, timeline and even materials used. I recommend him to anyone who needs a builder - or just needs help with home improvement projects in general. He’s my go-to and he will be yours, too, once you shake his hand. Perlo Homes is one of the best.
       `,
 	},
+
 	{
-		avatar: David,
-		name: "David G",
-		title: "Web Developer",
-		testimonial: `It's the cleanest template standup experience ever! I've never used Astro, but looking at the demo, code, it
-      should be fairly simple pickup on top of my existing React and NextJS experience.
+		avatar: EmmaNagy,
+		name: "Emma Nagy",
+		title: "Family Member",
+		testimonial: `HIGHLY recommend. He pours so much time and hard work into whatever project. But most importantly he does it all out of love for the customer and prioritizes giving the customer the best service!!!!
       `,
 	},
-	{
-		avatar: TravisB,
-		name: "Travis B",
-		title: "Developer",
-		testimonial: `Cosmic themes are for webdevs and marketers who don't want to waste time reinventing the wheel. 
-    Their themes have great examples of some of the creative things you can accomplish with Astro. 
-      `,
-	},
-	{
-		avatar: Isaac,
-		name: "Isaac",
-		title: "SaaS Developer",
-		testimonial: `My step-dad is starting a construction business and we're looking through Astro themes right now for his website
-      and stumbled upon Cosmic Themes "Galaxy" theme. Absolutely filthy. Excellent work, man.
-      `,
-	},
+	
 ];
 
 export default testimonialData;

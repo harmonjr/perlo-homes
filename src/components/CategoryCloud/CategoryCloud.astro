@@ -1,5 +1,4 @@
 ---
-import { getLocalizedRoute } from "@/js/translationUtils";
 
 // utils
 import { getAllPosts, countItems, sortByValue } from "@js/blogUtils";
@@ -23,7 +22,7 @@ const { showCount = false } = Astro.props as Props;
 	{
 		processedCategories.map(([category, count]) => (
 			<a
-				href={getLocalizedRoute(currLocale, `/categories/${category}/`)}
+				href={`/categories/${category}/`}
 				class="button button--ghost py-2 text-sm"
 			>
 				{humanize(category)}

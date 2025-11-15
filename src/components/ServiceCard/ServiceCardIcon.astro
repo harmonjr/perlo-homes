@@ -8,7 +8,6 @@
  * ! You can copy to actual SVG into src/icons and name it however and use similar to below
  */
 
-import { getLocalizedRoute } from "@/js/translationUtils";
 import { Icon } from "astro-icon/components";
 
 // components
@@ -33,7 +32,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
 
 <div {...rest} class="h-full">
 	<a
-		href={getLocalizedRoute(currLocale, href)}
+		href={href}
 		class="group bg-base-50 flex h-full flex-col justify-between overflow-hidden rounded-xl px-4 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
 	>
 		<div>
