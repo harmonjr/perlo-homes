@@ -1,8 +1,8 @@
 import { type TestimonialItem } from "../types/configDataTypes";
 
-import AshleyMoore from "@images/Ashley-Moore.jpg";
-import AshleyBoneske from "@images/Ashley-Boneske.jpg";
-import JenniferSnyder from "@images/Jennifer-snyder.png";
+import AshleyMoore from "@images/ashley-moore.jpg";
+import AshleyBoneske from "@images/ashley-boneske.jpg";
+import JenniferSnyder from "@images/jennifer-snyder.png";
 import EmmaNagy from "@images/emma-nagy.png";
 
 export const testimonialData: TestimonialItem[] = [
